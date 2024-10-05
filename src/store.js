@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 const useBooksUsersStore = create(
   persist(
@@ -11,6 +11,7 @@ const useBooksUsersStore = create(
     }),
     {
       name: "books-users",
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

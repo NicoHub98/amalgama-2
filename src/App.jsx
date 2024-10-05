@@ -14,16 +14,37 @@ function App() {
       setBooks(booksJson);
       setUsers(usersJson);
     }
-
-    console.log(books);
-    console.log(users);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(JSON.parse(localStorage.getItem("books-users")));
-  // }, []);
+  return (
+    <div>
+      <h1>Amalgama - Ejercicio 2</h1>
 
-  return <div>Amalgama - ejercicio 2</div>;
+      <h2 style={{ borderTop: "1px solid black" }}>Libros</h2>
+      {books.response && books.response.length > 0 ? (
+        books.response.map((book) => (
+          <div key={book.id}>
+            <h3>{book.title}</h3>
+            <p>{book.author.name}</p>
+          </div>
+        ))
+      ) : (
+        <p>No hay libros</p>
+      )}
+
+      <h2 style={{ borderTop: "1px solid black" }}>Usuarios</h2>
+      {users.response && users.response.length > 0 ? (
+        users.response.map((user) => (
+          <div key={user.id}>
+            <h3>{user.nickname}</h3>
+            <p>{user.email}</p>
+          </div>
+        ))
+      ) : (
+        <p>No hay usuarios</p>
+      )}
+    </div>
+  );
 }
 
 export default App;
